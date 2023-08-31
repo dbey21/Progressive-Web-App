@@ -7,7 +7,6 @@ const { InjectManifest } = require("workbox-webpack-plugin");
 
 // TODO: Add CSS loaders and babel to webpack.
 
-
 module.exports = () => {
   return {
     mode: "development",
@@ -24,7 +23,7 @@ module.exports = () => {
         template: "./index.html",
         title: "Webpack Plugin",
       }),
-    
+
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
@@ -55,7 +54,8 @@ module.exports = () => {
           use: ["style-loader", "css-loader"],
         },
         {
-         
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource",
         },
         {
           test: /\.m?js$/,
@@ -64,7 +64,6 @@ module.exports = () => {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              
             },
           },
         },
